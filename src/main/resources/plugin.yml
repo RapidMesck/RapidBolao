@@ -1,0 +1,12 @@
+name: RapidBolao
+version: '${project.version}'
+main: br.com.rapidmesck.rapidbolao.Bolao
+authors: [RapidMesck]
+api-version: 1.12.2
+depend: [Vault]
+commands:
+  bolao:
+    description: Comandos do bolão
+    usage: |
+      /<command> start <tempo em minutos> - Inicia o bolão (Somente para OPs).
+      /<command> <quantidade de dinheiro> - Faz uma aposta no bolão.

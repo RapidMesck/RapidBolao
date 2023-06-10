@@ -1,0 +1,12 @@
+messages:
+  bolaoActive: "Já existe um bolão ativo."
+  invalidTime: "Tempo inválido. Entre com o tempo em minutos."
+  bolaoStarted: "Bolao iniciado. Durará por %s minutos."
+  noBets: "O bolão terminou, mas ninguém participou."
+  bolaoFinished: |
+    §d         O bolão terminou. 
+    §dO vencedor foi §5 %s §d e ganhou §5 %s!
+  noActiveBolao: "Não há bolão ativo no momento."
+  invalidBetAmount: "Quantidade de aposta inválida."
+  insufficientFunds: "Você não tem dinheiro suficiente para essa aposta."
+  betPlaced: "Você apostou %s no bolão."
