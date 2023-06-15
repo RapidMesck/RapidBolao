@@ -107,13 +107,7 @@ public class Bolao extends JavaPlugin implements CommandExecutor {
             return true;
         }
 
-        double betAmount;
-        try {
-            betAmount = Double.parseDouble(args[0]);
-        } catch (NumberFormatException e) {
-            player.sendMessage(getConfig().getString("messages.invalidBetAmount"));
-            return true;
-        }
+        double betAmount = 1000.0;  // Aposta fixa de 1000
 
         if (econ.getBalance(player) < betAmount) {
             player.sendMessage(getConfig().getString("messages.insufficientFunds"));
