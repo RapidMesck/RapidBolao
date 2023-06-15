@@ -85,7 +85,10 @@ public class Bolao extends JavaPlugin implements CommandExecutor {
                     if (bets.isEmpty()) {
                         Bukkit.broadcastMessage(getConfig().getString("messages.noBets"));
                     } else {
-                        UUID winner = bets.get(new Random().nextInt(bets.size())).getPlayerId();
+                        List<UUID> keys = new ArrayList<>(bets.keySet());
+                        UUID randomKey = keys.get(new Random().nextInt(keys.size()));
+                        Bet winnerBet = bets.get(randomKey);
+                        UUID winner = winnerBet.getPlayerId();
                         double totalBet = bets.values().stream().mapToDouble(Bet::getAmount).sum();
                         econ.depositPlayer(Bukkit.getOfflinePlayer(winner), totalBet);
                         String messageWinner = String.format(getConfig().getString("messages.bolaoFinished"), Bukkit.getOfflinePlayer(winner).getName(), totalBet);
