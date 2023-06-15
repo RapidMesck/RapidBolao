@@ -9,4 +9,4 @@ commands:
     description: Comandos do bolão
     usage: |
       /<command> start <tempo em minutos> - Inicia o bolão (Somente para OPs).
-      /<command> - Faz uma aposta no bolão.
+      /<command> apostar - Faz uma aposta no bolão.
