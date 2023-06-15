@@ -16,7 +16,7 @@ import java.util.*;
 public class Bolao extends JavaPlugin implements CommandExecutor {
     private Economy econ;
     private Timer timer;
-    private List<Bet> bets = new ArrayList<>();
+    private Map<UUID, Bet> bets = new HashMap<>();
     private boolean bolaoIsActive = false;
 
     @Override
@@ -86,7 +86,7 @@ public class Bolao extends JavaPlugin implements CommandExecutor {
                         Bukkit.broadcastMessage(getConfig().getString("messages.noBets"));
                     } else {
                         UUID winner = bets.get(new Random().nextInt(bets.size())).getPlayerId();
-                        double totalBet = bets.stream().mapToDouble(Bet::getAmount).sum();
+                        double totalBet = bets.values().stream().mapToDouble(Bet::getAmount).sum();
                         econ.depositPlayer(Bukkit.getOfflinePlayer(winner), totalBet);
                         String messageWinner = String.format(getConfig().getString("messages.bolaoFinished"), Bukkit.getOfflinePlayer(winner).getName(), totalBet);
                         Bukkit.broadcastMessage(messageWinner);
@@ -99,6 +99,11 @@ public class Bolao extends JavaPlugin implements CommandExecutor {
 
         if (!bolaoIsActive) {
             player.sendMessage(getConfig().getString("messages.noActiveBolao"));
+            return true;
+        }
+
+        if (bets.containsKey(player.getUniqueId())) {
+            player.sendMessage(getConfig().getString("messages.alreadyPlacedBet"));
             return true;
         }
 
@@ -116,7 +121,7 @@ public class Bolao extends JavaPlugin implements CommandExecutor {
         }
 
         econ.withdrawPlayer(player, betAmount);
-        bets.add(new Bet(player.getUniqueId(), betAmount));
+        bets.put(player.getUniqueId(), new Bet(player.getUniqueId(), betAmount));
 
         String messageBetPlaced = String.format(getConfig().getString("messages.betPlaced"), betAmount);
         player.sendMessage(messageBetPlaced);
@@ -130,5 +135,3 @@ public class Bolao extends JavaPlugin implements CommandExecutor {
         }
     }
 }
-
-
