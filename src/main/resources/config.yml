@@ -10,3 +10,4 @@ messages:
   invalidBetAmount: "Quantidade de aposta inválida."
   insufficientFunds: "Você não tem dinheiro suficiente para essa aposta."
   betPlaced: "Você apostou %s no bolão."
+  alreadyPlacedBet: "&cVocê já fez uma aposta."
